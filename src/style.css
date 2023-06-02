@@ -145,6 +145,7 @@ body {
 }
 .linkCode {
     text-decoration: none;
+    color: #0B5ED7;
 }
 :hover.linkCode{
     text-decoration: underline;
