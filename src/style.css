@@ -1,0 +1,142 @@
+body {
+  font-family: "Roboto", sans-serif;
+  color: #5a6275;
+}
+.weather-app {
+  padding: 30px 62px 30px 50px;
+  margin: 60px auto;
+  border-radius: 10px;
+  max-width: 805px;
+}
+.search-form {
+  padding: 9px;
+  border-radius: 3px;
+  font-size: 20px;
+}
+.search-btn,
+.current-btm {
+  padding: 9px 18px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.current-btm {
+  padding: 10px 27px;
+  background-color: #1cc24b;
+  border: 1px #1cc24b;
+}
+:hover.current-btm {
+  background-color: #0ca75e;
+}
+.weather-icon {
+  font-size: 152px;
+  margin: 5px 0px;
+  position: relative;
+  top: 49px;
+  right: 10px;
+}
+.name-icon {
+  font-size: 26px;
+  font-weight: bold;
+  position: relative;
+  right: -20px;
+  top: -4px;
+  text-transform: capitalize;
+}
+.tem-info {
+  text-align: center;
+  border: 3px solid #5a6275;
+  width: 185px;
+  height: 178px;
+  border-radius: 50%;
+  margin: -198px 264px;
+}
+
+.tem {
+  font-size: 78px;
+  position: relative;
+  top: 19px;
+  right: -20px;
+}
+.degree {
+  position: relative;
+  text-decoration: none;
+  font-size: 18px;
+}
+:hover.degree {
+  text-decoration: underline;
+}
+.degree-celsius {
+  top: -23px;
+  right: -25px;
+}
+.line {
+  position: relative;
+  top: -9px;
+  right: -12px;
+  font-size: 18px;
+  font-weight: 900;
+}
+.degree-fahrenheit {
+  top: 6px;
+  right: 7px;
+}
+.max-min-tem {
+  font-size: 20px;
+  position: relative;
+  top: 6px;
+}
+.etc-info {
+  position: relative;
+  top: 12px;
+  right: -528px;
+}
+#city-name {
+  font-weight: bold;
+  font-size: 47px;
+  text-align: center;
+  position: relative;
+  right: 260px;
+  text-transform: capitalize;
+}
+#current-time {
+  font-size: 25px;
+  margin: 19px 0px;
+  position: relative;
+  right: 1px;
+}
+.etc {
+  font-size: 22px;
+}
+.another-weather {
+  text-align: center;
+  border: 3px solid #5a6275;
+  width: 96px;
+  height: 92px;
+  border-radius: 50%;
+  margin: 60px -24px 0px;
+}
+.another-weather-3 {
+  position: relative;
+  right: -5px;
+}
+.another-weather-4 {
+  position: relative;
+  right: -6px;
+}
+
+.another-day {
+  font-size: 18px;
+}
+.another-icon {
+  font-size: 30px;
+  margin: -5px;
+}
+.another-icon-2 {
+  position: relative;
+  top: -2px;
+}
+.another-max-min-tem {
+  font-size: 15px;
+  font-size: 14px;
+  margin: -8px;
+}
