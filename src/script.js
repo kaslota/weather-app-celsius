@@ -1,33 +1,25 @@
 // Show automatic weather
 
 function showAutoData(response) {
-  console.log(response.data);
   // Auto Location city name
-  let AutoLocationCityName = response.data.city;
+  let AutoLocationCityName = response.data.name;
   let cityName = document.querySelector("#city-name");
   cityName.innerHTML = `${AutoLocationCityName}`;
   // Auto Current temperature
-  let AutoTemperature = Math.round(response.data.temperature.current);
+  let AutoTemperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#temperature");
   currentTemp.innerHTML = `${AutoTemperature}`;
   // Auto Current max-min temperature
-  // let AutoMinTemp = Math.floor(response.data.main.temp_min);
-  // let AutoMaxTemp = Math.ceil(response.data.main.temp_max);
-  // let currentMaxMinTemp = document.querySelector("#current-max-min-tem");
-  // currentMaxMinTemp.innerHTML = `${AutoMinTemp} / ${AutoMaxTemp}`;
+  let AutoMinTemp = Math.floor(response.data.main.temp_min);
+  let AutoMaxTemp = Math.ceil(response.data.main.temp_max);
+  let currentMaxMinTemp = document.querySelector("#current-max-min-tem");
+  currentMaxMinTemp.innerHTML = `${AutoMinTemp} / ${AutoMaxTemp}`;
   // Auto Weather description
-  let AutoDescription = response.data.condition.description;
+  let AutoDescription = response.data.weather[0].description;
   let nameIcon = document.querySelector("#description");
   nameIcon.innerHTML = `${AutoDescription}`;
-  // Auto Weather icon
-  let icon = response.data.condition.icon;
-  let autoIcon = document.querySelector("#icon");
-  autoIcon.setAttribute(
-    "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${icon}.png`
-  );
   // Auto Current humidity
-  let AutoHumidity = response.data.temperature.humidity;
+  let AutoHumidity = response.data.main.humidity;
   let currentHumidity = document.querySelector("#humidity");
   currentHumidity.innerHTML = ` ${AutoHumidity}`;
   // Auto Current wind
@@ -36,10 +28,22 @@ function showAutoData(response) {
   currentWind.innerHTML = ` ${AutoWind}`;
 }
 
-let keyApi = `46d2dc4o007a9319bat387c5f5cb028f`;
+let keyApi = `0f8bc384a7c31b717a18cfe38a95ae06`;
 let unitCelsius = `metric`;
-let url = `https://api.shecodes.io/weather/v1/current?query=kyiv&key=${keyApi}&units=${unitCelsius}`;
+let url = `https://api.openweathermap.org/data/2.5/weather?q=kyiv&appid=${keyApi}&units=${unitCelsius}`;
 axios.get(url).then(showAutoData);
+// Auto Weather icon
+function showAutoIcon(response) {
+  let icon = response.data.condition.icon;
+  let autoIcon = document.querySelector("#icon");
+  autoIcon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${icon}.png`
+  );
+}
+let shecodesKeyApi = `46d2dc4o007a9319bat387c5f5cb028f`;
+let shecodesUrl = `https://api.shecodes.io/weather/v1/current?query=kyiv&key=${shecodesKeyApi}&units=${unitCelsius}`;
+axios.get(shecodesUrl).then(showAutoIcon);
 
 // Show temperature in celsius
 function showCelsius() {
