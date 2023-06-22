@@ -29,16 +29,21 @@ body {
 }
 .weather-icon {
   height: 266px;
-    width: 265px;
-    margin: -4px -50px -42px;
+  width: 265px;
+  margin: -4px -50px -42px;
 }
 .name-icon {
   font-size: 26px;
   font-weight: bold;
   position: relative;
-  right: -5px;
   top: -4px;
   text-transform: capitalize;
+}
+.clear-sky {
+  right: -25px;
+}
+.haze {
+  right: -50px;
 }
 .tem-info {
   text-align: center;
@@ -63,9 +68,17 @@ body {
 :hover.degree {
   text-decoration: underline;
 }
-.degree-celsius {
+.degreeCelsius {
   top: -23px;
   right: -25px;
+}
+.tem-info .active {
+  color: #5a6275;
+  cursor: default;
+}
+
+.tem-info .active:hover {
+  text-decoration: none;
 }
 .line {
   position: relative;
@@ -74,7 +87,7 @@ body {
   font-size: 18px;
   font-weight: 900;
 }
-.degree-fahrenheit {
+.degreeFahrenheit {
   top: 6px;
   right: 7px;
 }

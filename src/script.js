@@ -14,6 +14,11 @@ function showAutoData(response) {
   let autoMaxTemp = Math.ceil(response.data.main.temp_max);
   let currentMaxMinTemp = document.querySelector("#current-max-min-tem");
   currentMaxMinTemp.innerHTML = `${autoMinTemp} / ${autoMaxTemp}`;
+
+  celsiusTemperature = response.data.main.temp;
+  celsiusMaxTem = response.data.main.temp_max;
+  celsiusMinTem = response.data.main.temp_min;
+
   // Auto Current description
   let autoDescription = response.data.weather[0].description;
   let nameIcon = document.querySelector("#description");
@@ -26,7 +31,6 @@ function showAutoData(response) {
     `https://openweathermap.org/img/wn/${icon}@2x.png`
   );
   autoIcon.setAttribute("alt", `${autoDescription}`);
-
   // Auto Current humidity
   let autoHumidity = response.data.main.humidity;
   let currentHumidity = document.querySelector("#humidity");
@@ -42,29 +46,6 @@ let unitCelsius = `metric`;
 let url = `https://api.openweathermap.org/data/2.5/weather?q=kyiv&appid=${keyApi}&units=${unitCelsius}`;
 axios.get(url).then(showAutoData);
 
-// Show temperature in celsius
-function showCelsius() {
-  let temp = document.querySelector("#temperature");
-  temp.innerHTML = `15`;
-  let currentMaxMinTem = document.querySelector(`#current-max-min-tem`);
-  let celsiusMaxMinTem = `10 / 17`;
-  currentMaxMinTem.innerHTML = `${celsiusMaxMinTem}`;
-}
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", showCelsius);
-
-// Show temperature in fahrenheit
-function showFahrenheit() {
-  let temp = document.querySelector("#temperature");
-  let currentFahrenheit = 40;
-  temp.innerHTML = `${currentFahrenheit}`;
-  let currentMaxMinTem = document.querySelector(`#current-max-min-tem`);
-  let fahrenheitMaxMinTem = `38 / 41`;
-  currentMaxMinTem.innerHTML = `${fahrenheitMaxMinTem}`;
-}
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", showFahrenheit);
-
 // Show input name city
 function inputCity(event) {
   event.preventDefault();
@@ -73,7 +54,6 @@ function inputCity(event) {
   if (inputForm.value) {
     cityName.innerHTML = `${inputForm.value}`;
   } else {
-    // alert(`Please enter a city!😅`);
   }
 }
 let form = document.querySelector("form");
@@ -114,10 +94,21 @@ function showCityData(response) {
   let maxTemp = Math.ceil(response.data.main.temp_max);
   let currentMaxMinTemp = document.querySelector("#current-max-min-tem");
   currentMaxMinTemp.innerHTML = `${minTemp} / ${maxTemp}`;
+
+  celsiusTemperature = response.data.main.temp;
+  celsiusMaxTem = response.data.main.temp_max;
+  celsiusMinTem = response.data.main.temp_min;
+
   // Input Weather description
   let inputDescription = response.data.weather[0].description;
   let nameIcon = document.querySelector("#description");
   nameIcon.innerHTML = `${inputDescription}`;
+  // if ((inputDescription = `haze`)) {
+  //   nameIcon.classList.add("haze");
+  // } else { }
+  // if ((inputDescription = `clear sky`)) {
+  //   nameIcon.classList.add("clear-sky");
+  // } else {}
   // Input Weather icon
   let inputIcon = response.data.weather[0].icon;
   let icon = document.querySelector("#icon");
@@ -164,6 +155,11 @@ function showCurrentLocationData(response) {
   let locationMaxTemp = Math.ceil(response.data.main.temp_max);
   let currentMaxMinTemp = document.querySelector("#current-max-min-tem");
   currentMaxMinTemp.innerHTML = `${locationMinTemp} / ${locationMaxTemp}`;
+
+  celsiusTemperature = response.data.main.temp;
+  celsiusMaxTem = response.data.main.temp_max;
+  celsiusMinTem = response.data.main.temp_min;
+
   // Location Weather description
   let locationDescription = response.data.weather[0].description;
   let nameIcon = document.querySelector("#description");
@@ -201,3 +197,38 @@ function askCurrentPosition() {
 
 let currentBtn = document.querySelector("#current-btn");
 currentBtn.addEventListener("click", askCurrentPosition);
+
+// Show temperature in fahrenheit
+function showFahrenheit(event) {
+  event.preventDefault();
+  let temp = document.querySelector("#temperature");
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let currentFahrenheit = Math.round((celsiusTemperature * 9) / 5 + 32);
+  temp.innerHTML = currentFahrenheit;
+  let currentMaxMinTem = document.querySelector(`#current-max-min-tem`);
+  let fahrenheitMinTem = Math.floor((celsiusMinTem * 9) / 5 + 32);
+  let fahrenheitMaxTem = Math.ceil((celsiusMaxTem * 9) / 5 + 32);
+  currentMaxMinTem.innerHTML = `${fahrenheitMinTem} / ${fahrenheitMaxTem}`;
+}
+// Show temperature in celsius
+function showCelsius(event) {
+  event.preventDefault();
+  let temp = document.querySelector("#temperature");
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+  temp.innerHTML = Math.round(celsiusTemperature);
+  let currentMaxMinTem = document.querySelector(`#current-max-min-tem`);
+  currentMaxMinTem.innerHTML = `${Math.floor(celsiusMinTem)} / ${Math.ceil(
+    celsiusMaxTem
+  )}`;
+}
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", showCelsius);
+
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", showFahrenheit);
+
+let celsiusTemperature = null;
+let celsiusMinTem = null;
+let celsiusMaxTem = null;
