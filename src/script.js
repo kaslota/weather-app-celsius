@@ -2,48 +2,45 @@
 
 function showAutoData(response) {
   // Auto Location city name
-  let AutoLocationCityName = response.data.name;
+  let autoLocationCityName = response.data.name;
   let cityName = document.querySelector("#city-name");
-  cityName.innerHTML = `${AutoLocationCityName}`;
+  cityName.innerHTML = `${autoLocationCityName}`;
   // Auto Current temperature
-  let AutoTemperature = Math.round(response.data.main.temp);
+  let autoTemperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#temperature");
-  currentTemp.innerHTML = `${AutoTemperature}`;
+  currentTemp.innerHTML = `${autoTemperature}`;
   // Auto Current max-min temperature
-  let AutoMinTemp = Math.floor(response.data.main.temp_min);
-  let AutoMaxTemp = Math.ceil(response.data.main.temp_max);
+  let autoMinTemp = Math.floor(response.data.main.temp_min);
+  let autoMaxTemp = Math.ceil(response.data.main.temp_max);
   let currentMaxMinTemp = document.querySelector("#current-max-min-tem");
-  currentMaxMinTemp.innerHTML = `${AutoMinTemp} / ${AutoMaxTemp}`;
-  // Auto Weather description
-  let AutoDescription = response.data.weather[0].description;
+  currentMaxMinTemp.innerHTML = `${autoMinTemp} / ${autoMaxTemp}`;
+  // Auto Current description
+  let autoDescription = response.data.weather[0].description;
   let nameIcon = document.querySelector("#description");
-  nameIcon.innerHTML = `${AutoDescription}`;
+  nameIcon.innerHTML = `${autoDescription}`;
+  // Auto Current icon
+  let icon = response.data.weather[0].icon;
+  let autoIcon = document.querySelector("#icon");
+  autoIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${icon}@2x.png`
+  );
+  autoIcon.setAttribute("alt", `${autoDescription}`);
+
   // Auto Current humidity
-  let AutoHumidity = response.data.main.humidity;
+  let autoHumidity = response.data.main.humidity;
   let currentHumidity = document.querySelector("#humidity");
-  currentHumidity.innerHTML = ` ${AutoHumidity}`;
+  currentHumidity.innerHTML = ` ${autoHumidity}`;
   // Auto Current wind
-  let AutoWind = Math.round(response.data.wind.speed);
+  let autoWind = Math.round(response.data.wind.speed);
   let currentWind = document.querySelector("#wind");
-  currentWind.innerHTML = ` ${AutoWind}`;
+  currentWind.innerHTML = ` ${autoWind}`;
 }
 
 let keyApi = `0f8bc384a7c31b717a18cfe38a95ae06`;
 let unitCelsius = `metric`;
 let url = `https://api.openweathermap.org/data/2.5/weather?q=kyiv&appid=${keyApi}&units=${unitCelsius}`;
 axios.get(url).then(showAutoData);
-// Auto Weather icon
-function showAutoIcon(response) {
-  let icon = response.data.condition.icon;
-  let autoIcon = document.querySelector("#icon");
-  autoIcon.setAttribute(
-    "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${icon}.png`
-  );
-}
-let shecodesKeyApi = `46d2dc4o007a9319bat387c5f5cb028f`;
-let shecodesUrl = `https://api.shecodes.io/weather/v1/current?query=kyiv&key=${shecodesKeyApi}&units=${unitCelsius}`;
-axios.get(shecodesUrl).then(showAutoIcon);
 
 // Show temperature in celsius
 function showCelsius() {
@@ -104,30 +101,36 @@ if (minutes < 10) {
 }
 let currentTime = document.querySelector("#current-time");
 currentTime.innerHTML = `${day} ${hours}:${minutes}`;
-// let currentTime = document.querySelector(".current-time");
-// currentTime.innerHTML = ``;
 
 // Show current input data(temperature, description, humidity, wind)
 
 function showCityData(response) {
-  // Current temperature
+  // Input Current temperature
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#temperature");
   currentTemp.innerHTML = `${temperature}`;
-  // Current max-min temperature
+  // Input Current max-min temperature
   let minTemp = Math.floor(response.data.main.temp_min);
   let maxTemp = Math.ceil(response.data.main.temp_max);
   let currentMaxMinTemp = document.querySelector("#current-max-min-tem");
   currentMaxMinTemp.innerHTML = `${minTemp} / ${maxTemp}`;
-  // Weather description
-  let description = response.data.weather[0].description;
+  // Input Weather description
+  let inputDescription = response.data.weather[0].description;
   let nameIcon = document.querySelector("#description");
-  nameIcon.innerHTML = `${description}`;
-  // Current humidity
+  nameIcon.innerHTML = `${inputDescription}`;
+  // Input Weather icon
+  let inputIcon = response.data.weather[0].icon;
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${inputIcon}@2x.png`
+  );
+  icon.setAttribute("alt", `${inputDescription}`);
+  // Input Current humidity
   let humidity = response.data.main.humidity;
   let currentHumidity = document.querySelector("#humidity");
   currentHumidity.innerHTML = ` ${humidity}`;
-  // Current wind
+  // Input Current wind
   let wind = Math.round(response.data.wind.speed);
   let currentWind = document.querySelector("#wind");
   currentWind.innerHTML = ` ${wind}`;
@@ -165,6 +168,14 @@ function showCurrentLocationData(response) {
   let locationDescription = response.data.weather[0].description;
   let nameIcon = document.querySelector("#description");
   nameIcon.innerHTML = `${locationDescription}`;
+  // Location Weather icon
+  let locationIcon = response.data.weather[0].icon;
+  let currentIcon = document.querySelector(`#icon`);
+  currentIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${locationIcon}@2x.png`
+  );
+  currentIcon.setAttribute("alt", `${locationDescription}`);
   // Location Current humidity
   let locationHumidity = response.data.main.humidity;
   let currentHumidity = document.querySelector("#humidity");
