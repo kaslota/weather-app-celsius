@@ -82,6 +82,31 @@ if (minutes < 10) {
 let currentTime = document.querySelector("#current-time");
 currentTime.innerHTML = `${day} ${hours}:${minutes}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+
+  let forecast = `<div class="row">`;
+  days.forEach(function (day) {
+    forecast =
+      forecast +
+      `<div class="col">
+            <div class="another-weather">
+              <div class="another-day"><strong>${day}</strong></div>
+              <div class="another-icon">⛅</div>
+              <div class="another-max-min-tem" id="first-another-max-min-tem">
+                10 / 17
+              </div>
+            </div>
+        </div> `;
+  });
+
+  forecast = forecast + `</div>`;
+  forecastElement.innerHTML = forecast;
+}
+displayForecast();
+
 // Show current input data(temperature, description, humidity, wind)
 
 function showCityData(response) {
@@ -103,12 +128,7 @@ function showCityData(response) {
   let inputDescription = response.data.weather[0].description;
   let nameIcon = document.querySelector("#description");
   nameIcon.innerHTML = `${inputDescription}`;
-  // if ((inputDescription = `haze`)) {
-  //   nameIcon.classList.add("haze");
-  // } else { }
-  // if ((inputDescription = `clear sky`)) {
-  //   nameIcon.classList.add("clear-sky");
-  // } else {}
+
   // Input Weather icon
   let inputIcon = response.data.weather[0].icon;
   let icon = document.querySelector("#icon");
@@ -117,6 +137,7 @@ function showCityData(response) {
     `https://openweathermap.org/img/wn/${inputIcon}@2x.png`
   );
   icon.setAttribute("alt", `${inputDescription}`);
+
   // Input Current humidity
   let humidity = response.data.main.humidity;
   let currentHumidity = document.querySelector("#humidity");
