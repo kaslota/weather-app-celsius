@@ -130,16 +130,16 @@ body {
   font-size: 18px;
 }
 .another-icon {
-  font-size: 30px;
-  margin: -5px;
+  height: 75px;
+    width: 70px;
+    margin: -21px 0px -10px;
 }
 .another-max-min-tem {
   font-size: 15px;
-  font-size: 14px;
   margin: -8px;
 }
 .openCode {
-  margin: -46px 600px;
+  margin: -46px 403px;
 }
 .linkCode {
   text-decoration: none;
