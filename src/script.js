@@ -33,7 +33,6 @@ function transformOnDay(timestamp) {
 
 function displayForecast(response) {
   let forecastDaily = response.data.daily;
-  console.log(forecastDaily);
   let forecastElement = document.querySelector("#forecast");
   let forecast = `<div class="row">`;
   forecastDaily.forEach(function (forecastDay, index) {
@@ -48,7 +47,7 @@ function displayForecast(response) {
               <img class="another-icon" src="https://openweathermap.org/img/wn/${
                 forecastDay.weather[0].icon
               }@2x.png" alt="icon">
-              <div class="another-max-min-tem" id="first-another-max-min-tem">
+              <div class="another-max-min-tem" id="forecast-max-min-tem">
                  ${Math.round(forecastDay.temp.min)} / ${Math.round(
           forecastDay.temp.max
         )}
@@ -56,8 +55,8 @@ function displayForecast(response) {
             </div>
         </div> `;
     }
+  
   });
-
   forecast = forecast + `</div>`;
   forecastElement.innerHTML = forecast;
 }
@@ -134,39 +133,3 @@ function askCurrentPosition() {
 let currentBtn = document.querySelector("#current-btn");
 currentBtn.addEventListener("click", askCurrentPosition);
 
-// Show temperature in fahrenheit
-
-function showFahrenheit(event) {
-  event.preventDefault();
-  let temp = document.querySelector("#temperature");
-  celsius.classList.remove("active");
-  fahrenheit.classList.add("active");
-  let currentFahrenheit = Math.round((celsiusTemperature * 9) / 5 + 32);
-  temp.innerHTML = currentFahrenheit;
-  let currentMaxMinTem = document.querySelector(`#current-max-min-tem`);
-  let fahrenheitMinTem = Math.floor((celsiusMinTem * 9) / 5 + 32);
-  let fahrenheitMaxTem = Math.ceil((celsiusMaxTem * 9) / 5 + 32);
-  currentMaxMinTem.innerHTML = `${fahrenheitMinTem} / ${fahrenheitMaxTem}`;
-}
-// Show temperature in celsius
-
-function showCelsius(event) {
-  event.preventDefault();
-  let temp = document.querySelector("#temperature");
-  celsius.classList.add("active");
-  fahrenheit.classList.remove("active");
-  temp.innerHTML = Math.round(celsiusTemperature);
-  let currentMaxMinTem = document.querySelector(`#current-max-min-tem`);
-  currentMaxMinTem.innerHTML = `${Math.floor(celsiusMinTem)} / ${Math.ceil(
-    celsiusMaxTem
-  )}`;
-}
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", showCelsius);
-
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", showFahrenheit);
-
-let celsiusTemperature = null;
-let celsiusMinTem = null;
-let celsiusMaxTem = null;

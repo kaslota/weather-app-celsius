@@ -66,30 +66,13 @@ body {
   font-size: 78px;
   position: relative;
   top: 19px;
-  right: -20px;
+  right: -10px;
 }
 .degree {
   position: relative;
-  text-decoration: none;
   font-size: 18px;
-}
-:hover.degree {
-  text-decoration: underline;
-}
-.degreeCelsius {
   top: -23px;
-  right: -25px;
-}
-.line {
-  position: relative;
-  top: -9px;
-  right: -12px;
-  font-size: 18px;
-  font-weight: 900;
-}
-.degreeFahrenheit {
-  top: 6px;
-  right: 7px;
+  right: -8px;
 }
 .max-min-tem {
   font-size: 20px;
