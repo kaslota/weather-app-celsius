@@ -46,6 +46,9 @@ body {
 .haze {
   right: -50px;
 }
+.fog {
+  right: -58px;
+}
 .tem-info {
   text-align: center;
   border: 3px solid #5a6275;
