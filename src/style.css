@@ -7,6 +7,7 @@ body {
   margin: 60px auto;
   border-radius: 10px;
   max-width: 805px;
+ 
 }
 .search-form {
   padding: 9px;
@@ -32,7 +33,7 @@ body {
   width: 265px;
   margin: -4px -50px -42px;
 }
-.name-icon {
+.description-all {
   font-size: 26px;
   font-weight: bold;
   position: relative;
@@ -84,7 +85,7 @@ body {
   top: 12px;
   right: -528px;
 }
-#city-name {
+.city-name {
   font-weight: bold;
   font-size: 47px;
   text-align: center;
@@ -92,7 +93,7 @@ body {
   right: 260px;
   text-transform: capitalize;
 }
-#current-time {
+.current-time {
   font-size: 25px;
   margin: 19px 0px;
   position: relative;
@@ -101,7 +102,7 @@ body {
 .etc {
   font-size: 22px;
 }
-.another-weather {
+.forecast-weather {
   text-align: center;
   border: 3px solid #5a6275;
   width: 96px;
@@ -109,17 +110,17 @@ body {
   border-radius: 50%;
   margin: 60px 11px 0px;
 }
-.another-day {
+.forecast-day {
   font-size: 18px;
 }
-.another-icon {
+.forecast-icon {
   height: 75px;
     width: 70px;
     margin: -21px 0px -10px;
 }
-.another-max-min-tem {
+.forecast-max-min-tem {
   font-size: 15px;
-  margin: -8px;
+  margin: -9px 0px 0px 2px;
 }
 .openCode {
   margin: -46px 403px;
